@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boopathi P - Resume / 简历</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #eef1f5; display: flex; justify-content: center;
+    padding: 40px 20px; color: #1e293b;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  .resume {
+    max-width: 1000px; width: 100%; background: #fff;
+    border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #fff; padding: 36px 44px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    print-color-adjust: exact; -webkit-print-color-adjust: exact;
+  }
+  .header-left h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 2px; }
+  .header-left .tagline { font-size: 14px; color: #94a3b8; font-weight: 400; }
+  .header-right { text-align: right; font-size: 13px; line-height: 1.9; color: #cbd5e1; }
+  .body-wrap { display: flex; }
+  .sidebar {
+    width: 270px; min-width: 270px; background: #f8fafc;
+    padding: 28px 24px; border-right: 1px solid #e2e8f0;
+  }
+  .main { flex: 1; padding: 28px 36px; }
+  .section { margin-bottom: 26px; }
+  .section-title {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.2px; color: #0f172a;
+    padding-bottom: 6px; border-bottom: 2.5px solid #0f172a;
+    display: inline-block; margin-bottom: 12px;
+  }
+  .sidebar .section-title {
+    border-bottom-color: #cbd5e1; color: #475569;
+    display: block; margin-bottom: 10px;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 13px; margin-bottom: 8px; color: #334155;
+    word-break: break-word;
+  }
+  .contact-item .icon { width: 18px; text-align: center; flex-shrink: 0; color: #0f172a; }
+  .skill-block { margin-bottom: 14px; }
+  .skill-block:last-child { margin-bottom: 0; }
+  .skill-label { font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-tag {
+    background: #e2e8f0; color: #1e293b; padding: 3px 10px;
+    border-radius: 14px; font-size: 11px; font-weight: 500;
+  }
+  .lang-item { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; color: #334155; }
+  .lang-level { color: #64748b; font-size: 11px; font-weight: 500; }
+  .profile-text { font-size: 13px; line-height: 1.7; color: #334155; }
+  .exp-item { margin-bottom: 20px; break-inside: avoid; }
+  .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; }
+  .exp-company { font-weight: 700; font-size: 15px; color: #0f172a; }
+  .exp-role { font-weight: 600; font-size: 12.5px; color: #475569; margin-bottom: 4px; }
+  .exp-role .loc { color: #64748b; font-weight: 400; font-size: 12px; }
+  .exp-date { font-size: 11.5px; color: #64748b; white-space: nowrap; }
+  .exp-bullets { margin-top: 5px; padding-left: 16px; list-style: none; }
+  .exp-bullets li {
+    font-size: 12.5px; line-height: 1.65; color: #334155;
+    margin-bottom: 2px; position: relative;
+  }
+  .exp-bullets li::before { content: "\2022"; position: absolute; left: -14px; color: #0f172a; font-weight: 700; }
+  .edu-item { font-size: 13px; margin-bottom: 6px; color: #334155; }
+  .edu-item strong { color: #0f172a; }
+  .edu-item .year { color: #64748b; font-size: 12px; }
+  .divider {
+    display: flex; align-items: center; gap: 16px; padding: 20px 44px;
+    background: #f1f5f9; border-top: 2px solid #e2e8f0; border-bottom: 2px solid #e2e8f0;
+  }
+  .divider-line { flex: 1; height: 1px; background: #cbd5e1; }
+  .divider-text { font-size: 13px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 2px; white-space: nowrap; }
+  .download-pdf {
+    position: fixed; right: 24px; bottom: 24px; z-index: 20;
+    border: 0; border-radius: 999px; background: #0f172a; color: #fff;
+    padding: 12px 20px; font: 600 14px/1 'Segoe UI', sans-serif;
+    cursor: pointer; box-shadow: 0 10px 28px rgba(15,23,42,0.22);
+  }
+  .download-pdf:hover { background: #1e293b; }
+  .zh { font-family: 'Microsoft YaHei', 'Segoe UI', -apple-system, sans-serif; }
+  @page { size: A4 landscape; margin: 8mm; }
+  @media print {
+    body { background: #fff; padding: 0; margin: 0; }
+    .resume { max-width: 100%; box-shadow: none; border-radius: 0; }
+    .download-pdf { display: none; }
+    .page-en { page-break-after: always; }
+    * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+  @media (max-width: 768px) {
+    .body-wrap { flex-direction: column; }
+    .sidebar { width: 100%; min-width: unset; border-right: none; border-bottom: 1px solid #e2e8f0; }
+    .header { flex-direction: column; text-align: center; }
+    .header-right { text-align: center; }
+  }
+</style>
+</head>
+<body>
+<button class="download-pdf" type="button" onclick="window.print()">Download PDF</button>
+<div class="resume">
+
+  <!-- English -->
+  <div class="page-en">
+  <div class="header">
+    <div class="header-left">
+      <h1>Boopathi P</h1>
+      <div style="font-size:13px;color:#94a3b8;font-weight:400;">M.Sc. (Electronics)</div>
+      <div class="tagline">Engineering Lead | Automotive | Embedded Systems</div>
+    </div>
+    <div class="header-right">
+      <div>&#9993; boopainspires@gmail.com</div>
+      <div>&#9742; +86 18550074770 | +91 9986765203</div>
+      <div>&#127758; Shanghai, China | Open to relocation</div>
+    </div>
+  </div>
+  <div class="body-wrap">
+    <div class="sidebar">
+      <div class="section"><div class="section-title">Contact</div>
+        <div class="contact-item"><span class="icon">&#9742;</span> +86 18550074770 <span style="color:#64748b;font-size:11px;font-weight:500;">(WeChat)</span></div>
+        <div class="contact-item"><span class="icon">&#9742;</span> +91 9986765203 <span style="color:#64748b;font-size:11px;font-weight:500;">(WhatsApp)</span></div>
+        <div class="contact-item"><span class="icon">&#9993;</span> boopainspires@gmail.com</div>
+      </div>
+      <div class="section"><div class="section-title">Skills</div>
+        <div class="skill-block">
+          <div class="skill-label">Embedded Systems</div>
+          <div class="skill-tags">
+            <span class="skill-tag">ARM Cortex</span>
+            <span class="skill-tag">HW-SW Integration</span>
+            <span class="skill-tag">Firmware Testing</span>
+            <span class="skill-tag">Board Bring-up</span>
+            <span class="skill-tag">AI-Assisted Coding</span>
+            <span class="skill-tag">Python (AI-Assisted)</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-label">EDA &amp; Design Tools</div>
+          <div class="skill-tags"><span class="skill-tag">Altium</span><span class="skill-tag">OrCAD</span><span class="skill-tag">Cadence</span><span class="skill-tag">Allegro</span><span class="skill-tag">Simulation</span></div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-label">Standards &amp; Compliance</div>
+          <div class="skill-tags"><span class="skill-tag">ISO 26262</span><span class="skill-tag">AEC-Q</span><span class="skill-tag">EMC/EMI</span><span class="skill-tag">DFMEA</span><span class="skill-tag">PFMEA</span><span class="skill-tag">DFM/DFT</span><span class="skill-tag">CE/UL</span></div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-label">Wireless &amp; RF</div>
+          <div class="skill-tags"><span class="skill-tag">Bluetooth</span><span class="skill-tag">WiFi</span><span class="skill-tag">CRMX DMX</span><span class="skill-tag">Iridium</span><span class="skill-tag">GPS</span><span class="skill-tag">LTE</span><span class="skill-tag">RF</span></div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-label">Process &amp; Management</div>
+          <div class="skill-tags"><span class="skill-tag">Jira</span><span class="skill-tag">WBS</span><span class="skill-tag">RFQ/RFI</span><span class="skill-tag">6 Sigma</span><span class="skill-tag">5S</span><span class="skill-tag">IPC</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="section-title">Languages</div>
+        <div class="lang-item"><span>English</span><span class="lang-level">Professional</span></div>
+        <div class="lang-item"><span>Tamil</span><span class="lang-level">Native</span></div>
+        <div class="lang-item"><span>Kannada</span><span class="lang-level">Professional</span></div>
+        <div class="lang-item"><span>Telugu</span><span class="lang-level">Professional</span></div>
+        <div class="lang-item"><span>Mandarin Chinese</span><span class="lang-level">Beginner</span></div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="section"><div class="section-title">Profile Summary</div>
+        <div class="profile-text">Dynamic multi-domain engineering professional with extensive experience across <strong>Automotive, lighting systems, renewable energy, telecommunications, RF engineering, and embedded MCU/DSP development</strong>. Proven ability to lead cross-functional teams, drive complex technical projects, and manage end-to-end risk processes. Recognized for rapid learning, systems-level thinking, and delivering high-impact solutions in fast-paced environments. Adept at bridging hardware, software, and product requirements to achieve reliable, scalable, and innovative outcomes.</div>
+      </div>
+      <div class="section"><div class="section-title">Experience</div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">Kostal Automobile Elektrik GmbH &amp; Co</span><span class="exp-date">Apr 2023 – Present</span></div>
+          <div class="exp-role">Team Lead <span class="loc">&#9679; Shanghai, China</span></div>
+          <ul class="exp-bullets">
+            <li>Led end-to-end development of OBC products — owning system architecture, hardware design, validation, and team management through SOP.</li>
+            <li>Defined strategies aligning product development with market needs, driving innovation and efficiency.</li>
+            <li>Partnered with international design teams to review circuits, subsystems, schematics, and SW architecture.</li>
+            <li>Translated product requirements into architectures meeting functional specs, budgets, VAVE targets, and compliance standards (ISO 26262, AEC-Q).</li>
+            <li>Led RFQ/RFI analysis, developed WBS flows, and managed new product introduction from concept to release.</li>
+            <li>Applied DFMEA and PFMEA to identify and eliminate potential failures; directed cross-functional teams via Jira.</li>
+            <li>Coordinated directly with clients to resolve field technical issues, provided deep-dive technical explanations, and ensured seamless product integration at customer sites.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">Astera LED Technology GmbH</span><span class="exp-date">Jan 2021 – Mar 2023</span></div>
+          <div class="exp-role">Team Lead – Wireless Development <span class="loc">&#9679; Shenzhen, China</span></div>
+          <ul class="exp-bullets">
+            <li>Managed end-to-end development: component selection, architecture planning, validation, and release.</li>
+            <li>Designed analog/digital test interface circuits and automated test solutions for IC validation.</li>
+            <li>Implemented wireless communication protocols (Bluetooth, WiFi, CRMX DMX) for seamless lighting control.</li>
+            <li>Supported product testing, certification, and EMC/EMI validation to meet CE and UL compliance.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">Suzhou Hexagon Communication Technologies</span><span class="exp-date">Apr 2019 – Jan 2021</span></div>
+          <div class="exp-role">Product Development – Communication &amp; Embedded <span class="loc">&#9679; Suzhou, China</span></div>
+          <ul class="exp-bullets">
+            <li>Satellite communication (Iridium, GPS, LTE, NB-IoT, BLE 5.0, WiFi) and sensor-based circuits with mobile app integration.</li>
+            <li>Customized hardware design and technical verification for marine, automotive, and industrial products.</li>
+            <li>Proficient in Altium, OrCAD, Cadence, Allegro; thermal and impedance control for high-speed board design.</li>
+            <li>EMC/EMI testing, CE/UL certification, BMS with CAN protocols.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">XIN RUI Electronics Technology Co</span><span class="exp-date">Aug 2016 – Mar 2019</span></div>
+          <div class="exp-role">Product Development Specialist <span class="loc">&#9679; Cixi, Zhejiang, China</span></div>
+          <ul class="exp-bullets">
+            <li>Developed home appliance controllers ensuring reliable performance and industry compliance.</li>
+            <li>Conducted root cause failure analysis; reduced product costs through effective optimization.</li>
+            <li>Produced technical documentation (flow charts, test procedures, BOMs, application notes).</li>
+            <li>Achieved process improvements that accelerated delivery by four months.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">EcoServ Solutions Pvt Ltd</span><span class="exp-date">Oct 2013 – 2016</span></div>
+          <div class="exp-role">Senior Product Development <span class="loc">&#9679; Bangalore, India</span></div>
+          <ul class="exp-bullets">
+            <li>Developed renewable energy products: solar panels, LED lighting, battery management systems, and inverters.</li>
+            <li>Created sustainable solutions for homes, businesses, and smart grids.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">SAI Projects &amp; Systems (P) Ltd</span><span class="exp-date">Feb 2010 – Oct 2013</span></div>
+          <div class="exp-role">R&amp;D Engineer <span class="loc">&#9679; Bangalore, India</span></div>
+          <ul class="exp-bullets"><li>Fuel sensor integration, car dashboard/cluster systems, interior lighting controllers (Renault, Nissan, Toyota).</li></ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">PACE Power Systems (P) Ltd</span><span class="exp-date">Jul 2008 – Feb 2010</span></div>
+          <div class="exp-role">Hardware Design Engineer <span class="loc">&#9679; Bangalore, India</span></div>
+          <ul class="exp-bullets">
+            <li>Automation systems for base station control and network performance monitoring.</li>
+            <li>Modem and RF product integration and testing.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">Flextronics Technologies (I) Ltd</span><span class="exp-date">Dec 2006 – Jul 2008</span></div>
+          <div class="exp-role">Testing Engineer <span class="loc">&#9679; Bangalore, India</span></div>
+          <ul class="exp-bullets">
+            <li>Spectrum testing for Cisco servers, Nokia Siemens, Motorola, and Sony Ericsson products.</li>
+            <li>Trained in ESD, 6 Sigma, 5S &amp; IPC Standards.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section"><div class="section-title">Education</div>
+        <div class="edu-item"><strong>M.Sc. in Electronics</strong> – Periyar University, Salem, TN, India <span class="year">(2012)</span></div>
+        <div class="edu-item"><strong>Bachelor of Computer Applications</strong> – TNOU, Chennai, TN, India <span class="year">(2009)</span></div>
+        <div class="edu-item"><strong>PG Diploma in Power Electronics</strong> – NTTF, Bengaluru, KA, India <span class="year">(2006)</span></div>
+        <div class="edu-item"><strong>Diploma in Electrical &amp; Electronics Eng</strong> – PMC, Chennai, TN, India <span class="year">(2005)</span></div>
+      </div>
+      <div style="margin-top:20px;padding-top:14px;border-top:1px solid #e2e8f0;font-size:11.5px;color:#94a3b8;font-style:italic;">I hereby affirm that the information provided above is accurate and true to the best of my knowledge.</div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- Divider -->
+  <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-text">中文版本</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <!-- Chinese -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Boopathi P</h1>
+      <div style="font-size:13px;color:#94a3b8;font-weight:400;">M.Sc.（电子学）</div>
+      <div class="tagline">工程主管 | 汽车电子 | 嵌入式系统</div>
+    </div>
+    <div class="header-right">
+      <div>&#9993; boopainspires@gmail.com</div>
+      <div>&#9742; +86 18550074770 | +91 9986765203</div>
+      <div>&#127758; 中国上海 | 可 relocation</div>
+    </div>
+  </div>
+  <div class="body-wrap">
+    <div class="sidebar">
+      <div class="section"><div class="section-title">联系方式</div>
+        <div class="contact-item"><span class="icon">&#9742;</span> +86 18550074770 <span style="color:#64748b;font-size:11px;font-weight:500;">(微信)</span></div>
+        <div class="contact-item"><span class="icon">&#9742;</span> +91 9986765203 <span style="color:#64748b;font-size:11px;font-weight:500;">(WhatsApp)</span></div>
+        <div class="contact-item"><span class="icon">&#9993;</span> boopainspires@gmail.com</div>
+      </div>
+      <div class="section"><div class="section-title">专业技能</div>
+        <div class="skill-block">
+          <div class="skill-label">嵌入式系统</div>
+          <div class="skill-tags">
+            <span class="skill-tag">ARM Cortex</span>
+            <span class="skill-tag">HW-SW 集成</span>
+            <span class="skill-tag">固件测试</span>
+            <span class="skill-tag">板级调试</span>
+            <span class="skill-tag">AI 辅助编码</span>
+            <span class="skill-tag">Python (AI 辅助)</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-label">EDA 设计工具</div>
+          <div class="skill-tags"><span class="skill-tag">Altium</span><span class="skill-tag">OrCAD</span><span class="skill-tag">Cadence</span><span class="skill-tag">Allegro</span><span class="skill-tag">仿真</span></div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-label">标准与合规</div>
+          <div class="skill-tags"><span class="skill-tag">ISO 26262</span><span class="skill-tag">AEC-Q</span><span class="skill-tag">EMC/EMI</span><span class="skill-tag">DFMEA</span><span class="skill-tag">PFMEA</span><span class="skill-tag">DFM/DFT</span><span class="skill-tag">CE/UL</span></div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-label">无线与射频</div>
+          <div class="skill-tags"><span class="skill-tag">Bluetooth</span><span class="skill-tag">WiFi</span><span class="skill-tag">CRMX DMX</span><span class="skill-tag">Iridium</span><span class="skill-tag">GPS</span><span class="skill-tag">LTE</span><span class="skill-tag">RF</span></div>
+        </div>
+        <div class="skill-block">
+          <div class="skill-label">流程与管理</div>
+          <div class="skill-tags"><span class="skill-tag">Jira</span><span class="skill-tag">WBS</span><span class="skill-tag">RFQ/RFI</span><span class="skill-tag">6 Sigma</span><span class="skill-tag">5S</span><span class="skill-tag">IPC</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="section-title">语言能力</div>
+        <div class="lang-item"><span>英语</span><span class="lang-level">专业水平</span></div>
+        <div class="lang-item"><span>泰米尔语</span><span class="lang-level">母语</span></div>
+        <div class="lang-item"><span>卡纳达语</span><span class="lang-level">专业水平</span></div>
+        <div class="lang-item"><span>泰卢固语</span><span class="lang-level">专业水平</span></div>
+        <div class="lang-item"><span>中文普通话</span><span class="lang-level">初级</span></div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="section"><div class="section-title">个人简介</div>
+        <div class="profile-text">拥有汽车电子、照明系统、可再生能源、通信、射频工程及嵌入式 MCU/DSP 开发等多领域经验的资深工程专家。具备领导跨职能团队、推动复杂技术项目和管理端到端风险流程的能力。擅长以系统级思维快速学习，在快节奏环境中交付高影响力解决方案。精通硬件、软件和产品需求之间的桥接，实现可靠、可扩展和创新的产品交付。</div>
+      </div>
+      <div class="section"><div class="section-title">工作经历</div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">科世达汽车电气有限公司（Kostal）</span><span class="exp-date">2023年4月 – 至今</span></div>
+          <div class="exp-role">团队主管 <span class="loc">&#9679; 中国上海</span></div>
+          <ul class="exp-bullets">
+            <li>领导车载充电机（OBC）产品从概念到量产的端到端开发，负责系统架构、硬件设计、验证及团队管理。</li>
+            <li>制定产品开发策略，确保与市场需求对齐，推动创新与效率提升。</li>
+            <li>与国际设计团队合作审查电路、子系统、原理图及软件架构。</li>
+            <li>将产品需求转化为满足功能规格、预算、VAVE 目标及合规标准（ISO 26262、AEC-Q）的架构方案。</li>
+            <li>主导 RFQ/RFI 分析，制定 WBS 流程，管理从概念到量产的新产品导入。</li>
+            <li>应用 DFMEA 和 PFMEA 识别并消除潜在失效模式，通过 Jira 管理跨职能团队。</li>
+            <li>直接与客户协调解决现场技术问题，提供深度技术解释，确保产品在客户端的顺利集成。</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">Astera LED Technology GmbH</span><span class="exp-date">2021年1月 – 2023年3月</span></div>
+          <div class="exp-role">无线开发团队主管 <span class="loc">&#9679; 中国深圳</span></div>
+          <ul class="exp-bullets">
+            <li>管理端到端产品开发：元件选型、架构规划、验证及发布。</li>
+            <li>设计模拟/数字测试接口电路及 IC 验证自动化测试方案。</li>
+            <li>实施无线通信协议（Bluetooth、WiFi、CRMX DMX），实现无缝照明控制。</li>
+            <li>支持产品测试、认证及 EMC/EMI 验证，满足 CE 和 UL 合规要求。</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">苏州赫克斯通通信科技有限公司</span><span class="exp-date">2019年4月 – 2021年1月</span></div>
+          <div class="exp-role">产品开发 – 通信与嵌入式系统 <span class="loc">&#9679; 中国苏州</span></div>
+          <ul class="exp-bullets">
+            <li>卫星通信（Iridium、GPS、LTE、NB-IoT、BLE 5.0、WiFi）及传感器电路与移动应用集成。</li>
+            <li>负责船舶、汽车及工业产品的定制硬件设计与技术验证。</li>
+            <li>熟练使用 Altium、 OrCAD、 Cadence、 Allegro；高速 PCB 的热设计与阻抗控制。</li>
+            <li>EMC/EMI 测试、CE/UL 认证、BMS 及 CAN 协议开发。</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">鑫瑞电子科技有限公司</span><span class="exp-date">2016年8月 – 2019年3月</span></div>
+          <div class="exp-role">产品开发专员 <span class="loc">&#9679; 中国浙江慈溪</span></div>
+          <ul class="exp-bullets">
+            <li>开发家用电器控制器，确保可靠性能及行业合规性。</li>
+            <li>进行根本原因失效分析；通过有效优化降低产品成本。</li>
+            <li>编制技术文档（流程图、测试规程、BOM、应用说明）。</li>
+            <li>流程改进使交付周期缩短四个月。</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">EcoServ Solutions Pvt Ltd</span><span class="exp-date">2013年10月 – 2016年</span></div>
+          <div class="exp-role">高级产品开发 <span class="loc">&#9679; 印度班加罗尔</span></div>
+          <ul class="exp-bullets">
+            <li>开发可再生能源产品：太阳能板、LED 照明、电池管理系统及逆变器。</li>
+            <li>为家庭、企业和智能电网打造可持续解决方案。</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">SAI Projects &amp; Systems (P) Ltd</span><span class="exp-date">2010年2月 – 2013年10月</span></div>
+          <div class="exp-role">研发工程师 <span class="loc">&#9679; 印度班加罗尔</span></div>
+          <ul class="exp-bullets"><li>燃油传感器集成、汽车仪表盘及中控系统、内饰照明控制器（Renault、Nissan、Toyota）。</li></ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">PACE Power Systems (P) Ltd</span><span class="exp-date">2008年7月 – 2010年2月</span></div>
+          <div class="exp-role">硬件设计工程师 <span class="loc">&#9679; 印度班加罗尔</span></div>
+          <ul class="exp-bullets">
+            <li>基站控制自动化系统及网络性能监控方案。</li>
+            <li>调制解调器及射频产品的集成与测试。</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header"><span class="exp-company">伟创力科技（印度）有限公司（Flextronics）</span><span class="exp-date">2006年12月 – 2008年7月</span></div>
+          <div class="exp-role">测试工程师 <span class="loc">&#9679; 印度班加罗尔</span></div>
+          <ul class="exp-bullets">
+            <li>Cisco 服务器、Nokia Siemens、Motorola 及 Sony Ericsson 产品的频谱测试。</li>
+            <li>接受 ESD、6 Sigma、5S 及 IPC 标准培训。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section"><div class="section-title">教育背景</div>
+        <div class="edu-item"><strong>电子学硕士（M.Sc.）</strong> – Periyar University，印度泰米尔纳德邦塞勒姆 <span class="year">(2012)</span></div>
+        <div class="edu-item"><strong>计算机应用学士</strong> – TNOU，印度泰米尔纳德邦金奈 <span class="year">(2009)</span></div>
+        <div class="edu-item"><strong>电力电子研究生文凭</strong> – NTTF，印度卡纳塔克邦班加罗尔 <span class="year">(2006)</span></div>
+        <div class="edu-item"><strong>电气与电子工程文凭</strong> – PMC，印度泰米尔纳德邦金奈 <span class="year">(2005)</span></div>
+      </div>
+      <div style="margin-top:20px;padding-top:14px;border-top:1px solid #e2e8f0;font-size:11.5px;color:#94a3b8;font-style:italic;">本人确认以上信息真实准确，如实反映个人经历与能力。</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
